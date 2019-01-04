@@ -22,16 +22,22 @@ namespace ConsoleApplication1
             countdown = new CountdownEvent(1);
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            string ipBase = "169.254.9.";
-            for (int i = 1; i < 255; i++)
+            foreach (var item in GetExternalIPAddress())
             {
-                string ip = ipBase + i.ToString();
+                string ipBase = item.ToString();
+                string[] ipParts = ipBase.Split('.');
+                ipBase = ipParts[0] + "." + ipParts[1] + "." + ipParts[2] + ".";
+                for (int i = 1; i < 255; i++)
+                {
+                    string ip = ipBase + i.ToString();
 
-                Ping p = new Ping();
-                p.PingCompleted += new PingCompletedEventHandler(p_PingCompleted);
-                countdown.AddCount();
-                p.SendAsync(ip, 100, ip);
+                    Ping p = new Ping();
+                    p.PingCompleted += new PingCompletedEventHandler(p_PingCompleted);
+                    countdown.AddCount();
+                    p.SendAsync(ip, 100, ip);
+                }
             }
+            
             countdown.Signal();
             countdown.Wait();
             sw.Stop();
@@ -73,6 +79,42 @@ namespace ConsoleApplication1
                 Console.WriteLine("Pinging {0} failed. (Null Reply object?)", ip);
             }
             countdown.Signal();
+        }
+
+        public static  IPAddress[] GetExternalIPAddress()
+        {
+            IPHostEntry myIPHostEntry = Dns.GetHostEntry(Dns.GetHostName());
+            return myIPHostEntry.AddressList.Where(t => IsPrivateIP(t)).ToArray();            
+        }        
+        private static bool IsPrivateIP(IPAddress myIPAddress)
+        {
+            if (myIPAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            {
+                byte[] ipBytes = myIPAddress.GetAddressBytes();
+
+                // 10.0.0.0/24 
+                if (ipBytes[0] == 10)
+                {
+                    return true;
+                }
+                // 172.16.0.0/16
+                else if (ipBytes[0] == 172 && ipBytes[1] == 16)
+                {
+                    return true;
+                }
+                // 192.168.0.0/16
+                else if (ipBytes[0] == 192 && ipBytes[1] == 168)
+                {
+                    return true;
+                }
+                // 169.254.0.0/16
+                else if (ipBytes[0] == 169 && ipBytes[1] == 254)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
