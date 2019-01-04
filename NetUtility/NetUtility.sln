@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetUtility", "NetUtility\NetUtility.csproj", "{EDF3A65D-BD56-4E30-955A-98BFC3A0799D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingLAN", "PingLAN\PingLAN.csproj", "{1DFEC5A3-058F-4919-A6BC-5CF41B7766E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDF3A65D-BD56-4E30-955A-98BFC3A0799D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF3A65D-BD56-4E30-955A-98BFC3A0799D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF3A65D-BD56-4E30-955A-98BFC3A0799D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF3A65D-BD56-4E30-955A-98BFC3A0799D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFEC5A3-058F-4919-A6BC-5CF41B7766E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFEC5A3-058F-4919-A6BC-5CF41B7766E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFEC5A3-058F-4919-A6BC-5CF41B7766E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFEC5A3-058F-4919-A6BC-5CF41B7766E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEBBA276-C641-4091-BE6D-99C55E82015D}
+	EndGlobalSection
+EndGlobal
